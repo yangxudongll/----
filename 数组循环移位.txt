@@ -1,0 +1,50 @@
+#include<stdio.h>
+void traver(int a[], int n)
+{
+	int i = 0;
+	while (i < n)printf("%d\t", a[i++]);
+}
+void RRMove(int *a, int k, int n)
+{
+	k = k%n;                                //控制k的范围
+	int temp, i=0, j=0, p=0;    
+	while (i <n-k)
+	{
+		for (j = 0; j < k; j++)
+		{
+			temp = a[j];
+			a[j] = a[(j+k*(p+1))%n];
+			a[(j + k*(p + 1)) % n] = temp;
+			i++;
+		}
+		p ++;				//控制组数
+
+	}
+
+	/*
+	k = k%n;
+	int e;
+	int i = 0, j, p;
+	while (i < n - k)
+	{
+		p = i / k + 1;
+		for (j = 0; j < k; j++)
+		{
+			e = a[j];
+			a[j] = a[(p*k + j) % n];
+			a[(p*k + j) % n] = e;
+			i++;traver(a, 10);
+			printf("\n");
+		}
+		
+	}
+	*/
+}
+
+
+void main()
+{
+	int a[10];
+	for (int i = 0; i < 10; i++)a[i] = i+1;
+	RRMove(a, 3, 10);
+}
